@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = Allrecipes::VERSION
   spec.authors       = ["shivamd"]
   spec.email         = ["daryananis@gmail.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
-  spec.homepage      = ""
+  spec.summary       = %q{A Ruby wrapper for allrecipes.com}
+  spec.description   = %q{A Ruby wrapper for allrecipes.com. A simple interface to scrape recipes from allrecipes.com}
+  spec.homepage      = "https://github.com/shivamd/allrecipes"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
