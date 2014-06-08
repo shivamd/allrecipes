@@ -28,6 +28,15 @@ recipes = Allrecipes.new
 recipes.all #default sorted by popularity, limit 20.
 ```
 
+**Get recipes by course**
+```ruby
+recipes.course("breakfast") #default sorted by popularity, limit 20.
+```
+List of courses: 
+```ruby
+[ "appetizer", "bread", "breakfast", "dessert", "drink","fruit", "herbs", "main", "salad", "soup", "meat", "pasta", "seafood", "wholegrains"]
+```
+
 **Sample response**
 ```ruby
 [
