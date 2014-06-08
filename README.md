@@ -132,6 +132,5 @@ List of regions available:
 ## Todo
 
 1. Ability to search by ingredient.
-2. Ability to search by region.
-3. Filters on search (offset, limit & sort_by)
-4. Increase test coverage.
+2. Filters on search (offset, limit & sort_by)
+3. Increase test coverage.
