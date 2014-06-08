@@ -137,6 +137,10 @@ recipes.ingredient("apples") #default sorted by relevance, limit 21.
 
 ## Todo
 
-1. Ability to search by ingredient.
-2. Filters on search (offset, limit & sort_by)
-3. Increase test coverage.
+1. Filters on search (offset, limit & sort_by)
+2. Complex search with queries such as multiple ingredients, course, time etc.
+3. Add prep time & cook time to results
+4. Add nutrional info to results.
+5. Add rating to results
+6. Add user photos for recipe to results
+7. Able to get popular recipes of the day.
