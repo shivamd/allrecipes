@@ -37,6 +37,73 @@ List of courses:
 [ "appetizer", "bread", "breakfast", "dessert", "drink","fruit", "herbs", "main", "salad", "soup", "meat", "pasta", "seafood", "wholegrains"]
 ```
 
+**Get recipes by region**
+```ruby
+recipes.region("european") #default sorted by popularity, limit 20.
+```
+
+Specific options available
+```ruby
+recipes.region("french") #default sorted by popularity, limit 20.
+```
+
+List of regions available: 
+```ruby
+[
+  "asian"
+    "chinese" 
+    "thai" 
+    "japanese" 
+    "filipino" 
+    "korean" 
+    "vietnamese" 
+    "malaysian" 
+    "pakistani" 
+    "indonesian" 
+    "iranian" 
+    "bangladeshi" 
+    "indian" 
+
+  "african"
+    "african_main"
+    "moroccan"
+    "south_african"
+    "egyptian"
+
+  "australian"
+
+  "canadian"
+    "vancouver" 
+    "toronto" 
+    "quebec" 
+
+  "european"
+    "italian"
+    "uk"
+    "french"
+    "greek"
+    "eastern_european"
+    "german"
+    "scandinavian"
+    "spanish"
+    "portuguese"
+    "dutch"
+    "austrian"
+    "swiss"
+    "belgian"
+
+  "latin_american"
+    "mexican" 
+    "caribbean" 
+    "south_american" 
+
+  "middle_eastern"
+    "lebanese" 
+    "turkish" 
+    "israeli" 
+]
+```
+
 **Sample response**
 ```ruby
 [
