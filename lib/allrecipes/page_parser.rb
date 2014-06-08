@@ -23,7 +23,7 @@ class PageParser
   end
 
   def recipes_grid
-    @page.search(recipes_grid_class)[1]
+    @page.search(recipes_grid_class)[-1]
   end
 
   def recipe_link(info)
