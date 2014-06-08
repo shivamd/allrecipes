@@ -1,6 +1,7 @@
 # Allrecipes
 
-A Ruby interface to a Allrecipes.com scraper.
+A Ruby interface to the Allrecipes API.
+Allrecipes doesn't have an API, the requests are done using mechanize.
 
 ## Installation
 
