@@ -10,7 +10,7 @@ describe Allrecipes do
         end
       end
       it "requests the correct url" do
-        expect(a_request(:get, "http://allrecipes.com/recipes")).to have_been_made
+        expect(a_request(:get, "http://allrecipes.com/recipes?page=")).to have_been_made
       end
       it "count should be 20" do
         expect(@recipes.count).to eq 20
@@ -29,7 +29,7 @@ describe Allrecipes do
       end
 
       it "requests the correct url" do
-        expect(a_request(:get, "http://allrecipes.com/recipes/bread"))
+        expect(a_request(:get, "http://allrecipes.com/recipes/bread?page=")).to have_been_made
       end
 
       it "should return 20 recipes" do
@@ -56,7 +56,7 @@ describe Allrecipes do
       end
 
       it "requests the correct url" do
-        expect(a_request(:get, "http://allrecipes.com/recipes/world-cuisine/asian"))
+        expect(a_request(:get, "http://allrecipes.com/recipes/world-cuisine/asian?page=")).to have_been_made
       end
 
       it "should return 20 recipes" do
@@ -74,7 +74,7 @@ describe Allrecipes do
       end
 
       it "requests the correct url" do
-        expect(a_request(:get, "http://allrecipes.com/recipes/world-cuisine/asian/chinese"))
+        expect(a_request(:get, "http://allrecipes.com/recipes/world-cuisine/asian/chinese?page=")).to have_been_made
       end
 
       it "should return 20 recipes" do
@@ -100,7 +100,7 @@ describe Allrecipes do
       end
 
       it "requests the correct url" do
-        expect(a_request(:get, "http://allrecipes.com/search/?wt=apples"))
+        expect(a_request(:get, "http://allrecipes.com/search/?wt=apples&page=")).to have_been_made
       end
 
       it "should return 21 recipes" do
