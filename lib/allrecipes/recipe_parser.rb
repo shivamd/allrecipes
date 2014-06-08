@@ -52,7 +52,7 @@ class RecipeParser
   end
 
   def ingredients_list
-    page.search(ingredients_class)
+    @page.search(ingredients_class)
   end
 
   def ingredients_class
@@ -74,7 +74,7 @@ class RecipeParser
     end
   end
 
-  def amount
+  def amount(ingredient)
     ingredient.search(ingredient_amount_class).children[0]
   end
 
@@ -82,7 +82,7 @@ class RecipeParser
     ".ingredient-amount"
   end
 
-  def ingredient_name
+  def ingredient_name(ingredient)
     ingredient.search(ingredient_name_class).children[0]
   end
 
