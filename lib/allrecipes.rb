@@ -1,5 +1,4 @@
 require "allrecipes/version"
+require 'nokogiri'
+require 'mechanize'
 
-module Allrecipes
-  # Your code goes here...
-end
