@@ -1,8 +1,9 @@
 class PageParser
 
-  def initialize(page)
+  def initialize(page, options={})
     @page = page
     @recipes = []
+    @options = options
     get_recipes
   end
 
@@ -15,7 +16,11 @@ class PageParser
   end
 
   def recipe_info
-     recipes_grid.search(recipe_info_class)
+     if @options[:type] == "ingredient"
+       @page.search(recipe_info_class)
+     else
+       recipes_grid.search(recipe_info_class)
+     end
   end
 
   def recipes_grid_class

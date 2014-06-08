@@ -31,6 +31,16 @@ class Allrecipes
     end
   end
 
+  def ingredient(name, options={})
+    begin
+      url = $URL + "/search/?wt=#{name}"
+      page = @agent.get(url)
+      PageParser.new(page, {type: "ingredient"}).recipes
+    rescue Exception
+      raise "Could not find recipes that include this ingredient"
+    end
+  end
+
 
 end
 

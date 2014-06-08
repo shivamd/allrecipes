@@ -90,4 +90,34 @@ describe Allrecipes do
       end
     end
   end
+
+  describe "#ingredient" do
+    context "without options" do
+      before do
+        VCR.use_cassette "ingredients" do
+          @recipes = subject.ingredient("apples")
+        end
+      end
+
+      it "requests the correct url" do
+        expect(a_request(:get, "http://allrecipes.com/search/?wt=apples"))
+      end
+
+      it "should return 21 recipes" do
+        expect(@recipes.count).to eq 21
+      end
+
+      its "recipes should include apple" do
+        expect(@recipes.first[:ingredients].select{ |ingredient| ingredient["name"].include?("apples") }.count).to eq 1
+      end
+
+    end
+
+    context "no recipes for ingredient" do
+      let(:nonexistent_ingredient) { -> { subject.ingredient("nonexistent") } }
+      it "should give appropriate error message" do
+        expect(nonexistent_ingredient).to raise_error("Could not find recipes that include this ingredient")
+      end
+    end
+  end
 end
