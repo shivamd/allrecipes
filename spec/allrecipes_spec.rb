@@ -3,12 +3,11 @@ describe Allrecipes do
   subject { Allrecipes.new }
 
   describe "#all" do
-    before do
-      stub_request(:get, "http://allrecipes.com/recipes").to_return(body: fixture('recipe.json'), headers: {content_type: 'application/json; charset=utf-8'})
-    end
     context "without options" do
       before do
-        @recipes = subject.all
+        VCR.use_cassette "all" do
+          @recipes = subject.all
+        end
       end
       it "requests the correct url" do
         expect(a_request(:get, "http://allrecipes.com/recipes")).to have_been_made
@@ -18,4 +17,5 @@ describe Allrecipes do
       end
     end
   end
+
 end
