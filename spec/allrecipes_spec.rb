@@ -46,4 +46,48 @@ describe Allrecipes do
     end
 
   end
+
+  describe "#region" do
+    context "without options main region" do
+      before do
+        VCR.use_cassette "region" do
+          @recipes = subject.region("asian")
+        end
+      end
+
+      it "requests the correct url" do
+        expect(a_request(:get, "http://allrecipes.com/recipes/world-cuisine/asian"))
+      end
+
+      it "should return 20 recipes" do
+        expect(@recipes.count).to eq 20
+      end
+
+    end
+
+    context "without options sub region" do
+
+      before do
+        VCR.use_cassette "sub_region" do
+          @recipes = subject.region("chinese")
+        end
+      end
+
+      it "requests the correct url" do
+        expect(a_request(:get, "http://allrecipes.com/recipes/world-cuisine/asian/chinese"))
+      end
+
+      it "should return 20 recipes" do
+        expect(@recipes.count).to eq 20
+      end
+
+    end
+
+    context "non existent region" do
+      let(:nonexistent_region) { -> { subject.region("nonexistent") } }
+      it "should give appropriate error message" do
+        expect(nonexistent_region).to raise_error("Region doesn't exist")
+      end
+    end
+  end
 end

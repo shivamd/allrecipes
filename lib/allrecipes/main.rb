@@ -21,6 +21,16 @@ class Allrecipes
     end
   end
 
+  def region(region_type, options={})
+    begin
+      region_url = get_region_url(region_type)
+      page = @agent.get(region_url)
+      PageParser.new(page).recipes
+    rescue Exception
+      raise "Region doesn't exist"
+    end
+  end
+
 
 end
 
