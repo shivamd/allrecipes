@@ -10,6 +10,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake"
   spec.add_development_dependency "rspec"
   spec.add_development_dependency "webmock"
+  spec.add_development_dependency "vcr"
   spec.name          = "allrecipes"
   spec.version       = Allrecipes::VERSION
   spec.authors       = ["shivamd"]
