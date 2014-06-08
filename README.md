@@ -105,6 +105,11 @@ List of regions available:
 ]
 ```
 
+**Get recipes by ingredient**
+```ruby
+recipes.ingredient("apples") #default sorted by relevance, limit 21.
+```
+
 **Sample response**
 ```ruby
 [
