@@ -1,7 +1,8 @@
 class RecipeParser
+  $BASE_URL = "http://allrecipes.com"
 
   def initialize(page)
-    @page = agent.get(page)
+    @page = agent.get $BASE_URL + page
     @directions = []
     @ingredients = []
     get_ingredients
