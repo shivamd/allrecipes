@@ -64,7 +64,7 @@ List of courses:
 
 ## Todo
 
-1. Filters on search (offset, limit & sort_by)
-2. Ability to search by course.
-3. Ability to search by region
+1. Ability to search by ingredient.
+2. Ability to search by region.
+3. Filters on search (offset, limit & sort_by)
 4. Increase test coverage.
