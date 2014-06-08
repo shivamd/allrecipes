@@ -1,6 +1,6 @@
 # Allrecipes
 
-TODO: Write a gem description
+A Ruby interface to a Allrecipes.com scraper.
 
 ## Installation
 
@@ -18,12 +18,44 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+**Initialize scraper**
+```ruby
+recipes = Allrecipes.new
+```
 
-## Contributing
+**Get all recipes**
+```ruby
+recipes.all #default sorted by popularity, limit 20.
+```
 
-1. Fork it ( https://github.com/[my-github-username]/allrecipes/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
+**Sample response**
+```ruby
+[
+    {
+      :name => "Lasagna",
+      :image => "http://images.media-allrecipes.com/userphotos/250x250/00/03/24/32427.jpg",
+      :servings => 12,
+      :ingredients =>
+        [
+          {
+            "quantity" => 1.0,
+            "unit" => "pound", 
+            "name" => "ground beef"
+          }
+        ],
+     :directions => 
+       [
+         {
+           "Bring a large pot of lightly salted water to a boil"
+         }
+       ]
+    }
+]
+```
+
+## Todo
+
+1. Filters on search (offset, limit & sort_by)
+2. Ability to search by course.
+3. Ability to search by region
+4. Increase test coverage.
