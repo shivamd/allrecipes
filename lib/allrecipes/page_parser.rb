@@ -26,9 +26,13 @@ class PageParser
     @page.search(recipes_grid_class)[1]
   end
 
+  def recipe_link(info)
+    info.search(title_class)[0].attributes["href"].value
+  end
+
   def get_recipes
     recipe_info.each do |info|
-      recipe_link = info.search(title_class)[0].attributes["href"].value
+      recipe_link = recipe_link(info)
       @recipes <<  RecipeParser.new(recipe_link).recipe
     end
   end
