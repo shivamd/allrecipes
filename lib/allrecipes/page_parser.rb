@@ -15,7 +15,15 @@ class PageParser
   end
 
   def recipe_info
-     @page.search(recipe_info_class)
+     recipes_grid.search(recipe_info_class)
+  end
+
+  def recipes_grid_class
+    ".grid-view"
+  end
+
+  def recipes_grid
+    @page.search(recipes_grid_class)[1]
   end
 
   def get_recipes
