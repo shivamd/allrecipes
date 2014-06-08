@@ -120,4 +120,26 @@ describe Allrecipes do
       end
     end
   end
+
+  describe "options" do
+    context "limit" do
+      describe "valid limit" do
+        before do
+          VCR.use_cassette "valid_limit" do
+            @all_recipes = subject.all({limit: 10})
+            @region_recipes = subject.region("asian", {limit: 10})
+            @course_recipes = subject.course("bread", {limit: 10})
+            @ingredient_recipes = subject.ingredient("apples", {limit: 10})
+          end
+        end
+
+        it "should restrict recipes to 10" do
+          expect(@all_recipes.count).to eq 10
+          expect(@region_recipes.count).to eq 10
+          expect(@course_recipes.count).to eq 10
+          expect(@ingredient_recipes.count).to eq 10
+        end
+      end
+    end
+  end
 end
