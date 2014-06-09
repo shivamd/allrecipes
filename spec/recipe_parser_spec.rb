@@ -23,6 +23,14 @@ describe RecipeParser do
     expect(@recipe[:rating]).to eq 5
   end
 
+  it "should have the right prep time" do
+    expect(@recipe[:prep_time]).to eq 30
+  end
+
+  it "should have the right cook time" do
+    expect(@recipe[:cook_time]).to eq 150
+  end
+
   context "ingredients" do
 
     it "should have the right amount of ingredients" do
@@ -51,7 +59,9 @@ describe RecipeParser do
       servings: @recipe[:servings],
       ingredients: @recipe[:ingredients],
       directions: @recipe[:directions],
-      rating: @recipe[:rating]
+      rating: @recipe[:rating],
+      prep_time: @recipe[:prep_time],
+      cook_time: @recipe[:cook_time]
     }
     expect(@recipe).to eq expected_output
   end

@@ -46,6 +46,36 @@ class RecipeParser
     ".detail-right meta[itemprop='ratingValue']"
   end
 
+  def preparation_time
+    prep_time = 0
+    prep_time += prep_minutes ? prep_minutes.inner_text.to_i : 0
+    prep_time += prep_hours ? prep_hours.inner_text.to_i * 60 : 0 #hours to minutes
+    prep_time
+  end
+
+  def prep_minutes
+    @page.search("#prepMinsSpan em")
+  end
+
+  def prep_hours
+    @page.search("#prepHoursSpan em")
+  end
+
+  def cooking_time
+    cook_time = 0
+    cook_time += cook_minutes ? cook_minutes.inner_text.to_i : 0
+    cook_time += cook_hours ? cook_hours.inner_text.to_i * 60 : 0 #hours to minutes
+    cook_time
+  end
+
+  def cook_minutes
+    @page.search("#cookMinsSpan em")
+  end
+
+  def cook_hours
+    @page.search("#cookHoursSpan em")
+  end
+
   def directions_class
     ".directions ol li span"
   end
@@ -106,7 +136,9 @@ class RecipeParser
       servings: servings,
       ingredients: @ingredients,
       directions: @directions,
-      rating: rating
+      rating: rating,
+      prep_time: preparation_time,
+      cook_time: cooking_time
     }
   end
 
