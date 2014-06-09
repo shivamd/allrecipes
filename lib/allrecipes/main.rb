@@ -39,5 +39,13 @@ class Allrecipes
       raise "Could not find recipes that include this ingredient"
     end
   end
+
+  def recipe_url(url)
+    begin
+      RecipeParser.new(url).recipe
+    rescue Exception
+      raise "This page does not contain a recipe"
+    end
+  end
 end
 

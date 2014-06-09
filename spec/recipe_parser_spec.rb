@@ -2,7 +2,7 @@ require 'spec_helper'
 describe RecipeParser do
   before do
     VCR.use_cassette "recipe" do
-      url = "/Recipe/Worlds-Best-Lasagna/"
+      url = "http://allrecipes.com/Recipe/Worlds-Best-Lasagna/"
       @recipe = RecipeParser.new(url).recipe
     end
   end

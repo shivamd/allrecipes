@@ -121,4 +121,43 @@ describe Allrecipes do
     end
   end
 
+  describe "#recipe_url" do
+    context "correct url" do
+      before do
+        VCR.use_cassette "recipe" do
+          @recipe = subject.recipe_url("http://allrecipes.com/Recipe/Mushrooms-with-a-Soy-Sauce-Glaze")
+        end
+      end
+
+      it "requests the correct url" do
+        expect(a_request(:get, "http://allrecipes.com/Recipe/Mushrooms-with-a-Soy-Sauce-Glaze")).to have_been_made
+      end
+
+      it "should return a formatted recipe" do
+        expected_output = {
+          name: @recipe[:name],
+          image: @recipe[:image],
+          servings: @recipe[:servings],
+          ingredients: @recipe[:ingredients],
+          directions: @recipe[:directions],
+          rating: @recipe[:rating],
+          prep_time: @recipe[:prep_time],
+          cook_time: @recipe[:cook_time]
+        }
+        expect(@recipe).to eq expected_output
+      end
+    end
+
+    context "invalid url" do
+      let(:invalid_allrecipes_url) { -> { subject.recipe_url("http://allrecipes.com") } }
+      it "should give appropriate error message" do
+        expect(invalid_allrecipes_url).to raise_error("This page does not contain a recipe")
+      end
+
+      let(:invalid_url) { -> { subject.recipe_url("invalid") } }
+      it "should give appropriate error message" do
+        expect(invalid_url).to raise_error("This page does not contain a recipe")
+      end
+    end
+  end
 end

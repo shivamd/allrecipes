@@ -37,7 +37,7 @@ class PageParser
   end
 
   def recipe_link(info)
-    info.search(title_class)[0].attributes["href"].value
+    "http://allrecipes.com" + info.search(title_class)[0].attributes["href"].value
   end
 
   def get_recipes

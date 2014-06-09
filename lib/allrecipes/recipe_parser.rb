@@ -1,8 +1,7 @@
 class RecipeParser
-  $BASE_URL = "http://allrecipes.com"
 
   def initialize(page)
-    @page = agent.get $BASE_URL + page
+    @page = request_page(page)
     @directions = []
     @ingredients = []
     get_ingredients
@@ -11,6 +10,14 @@ class RecipeParser
 
   def agent
     Mechanize.new
+  end
+
+  def request_page(page)
+    if page.match(/allrecipes\.com/)
+      agent.get page
+    else
+      raise "Invalid URL"
+    end
   end
 
   def name
@@ -38,8 +45,11 @@ class RecipeParser
   end
 
   def rating
-    float_value = @page.search(rating_class).attr("content").inner_text.to_f
-    (float_value * 2).round / 2.0 #to convert to nearest 0.5
+    rating_html = @page.search(rating_class)
+    if rating_html.length > 0
+      float_value = rating_html.attr("content").inner_text.to_f
+      (float_value * 2).round / 2.0 #to convert to nearest 0.5
+    end
   end
 
   def rating_class
@@ -130,16 +140,20 @@ class RecipeParser
   end
 
   def recipe
-    {
-      name: name,
-      image: image,
-      servings: servings,
-      ingredients: @ingredients,
-      directions: @directions,
-      rating: rating,
-      prep_time: preparation_time,
-      cook_time: cooking_time
-    }
+    begin
+      {
+        name: name,
+        image: image,
+        servings: servings,
+        ingredients: @ingredients,
+        directions: @directions,
+        rating: rating,
+        prep_time: preparation_time,
+        cook_time: cooking_time
+      }
+    rescue
+      raise "Error getting recipe"
+    end
   end
 
 end
