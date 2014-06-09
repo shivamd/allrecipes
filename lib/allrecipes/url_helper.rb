@@ -95,4 +95,20 @@ module URLHelper
 
     }
   end
+
+  def search_sort_parameter(sort_type)
+    case sort_type
+      when "date" then "n"
+      when "title" then "t"
+      else "p"
+    end
+  end
+
+  def ingredient_sort_parameter(sort_type)
+    case sort_type
+      when "rating" then "ra"
+      when "popularity" then "p"
+      else "re"
+    end
+  end
 end

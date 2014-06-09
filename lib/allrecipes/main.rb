@@ -7,13 +7,13 @@ class Allrecipes
   end
 
   def all(options={})
-    page = @agent.get $URL + "/recipes" + "?page=#{options[:page]}"
+    page = @agent.get $URL + "/recipes" + "?page=#{options[:page]}&st=#{search_sort_parameter(options[:sort_by])}"
     PageParser.new(page, options).recipes
   end
 
   def course(course_type, options={})
     begin
-      course_url = get_course_url(course_type) + "?page=#{options[:page]}"
+      course_url = get_course_url(course_type) + "?page=#{options[:page]}&st=#{search_sort_parameter(options[:sort_by])}"
       page = @agent.get(course_url)
       PageParser.new(page, options).recipes
     rescue Exception
@@ -23,7 +23,7 @@ class Allrecipes
 
   def region(region_type, options={})
     begin
-      region_url = get_region_url(region_type) + "?page=#{options[:page]}"
+      region_url = get_region_url(region_type) + "?page=#{options[:page]}&st=#{search_sort_parameter(options[:sort_by])}"
       page = @agent.get(region_url)
       PageParser.new(page, options).recipes
     rescue Exception
@@ -33,7 +33,7 @@ class Allrecipes
 
   def ingredient(name, options={})
     begin
-      url = $URL + "/search/?wt=#{name}&page=#{options[:page]}"
+      url = $URL + "/search/?wt=#{name}&page=#{options[:page]}&sb=#{ingredient_sort_parameter(options[:sort_by])}"
       page = @agent.get(url)
       options = options.merge({type: "ingredient"})
       PageParser.new(page, options).recipes
