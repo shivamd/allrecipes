@@ -47,7 +47,7 @@ describe Allrecipes do
           expect(a_request(:get, "http://allrecipes.com/search/?wt=apples&page=5&sb=re")).to have_been_made
         end
 
-        its "results should be different from the initial page" do
+        it "should be different from the initial page" do
           expect(@all_recipes).to_not eq @all_recipes_initial
           expect(@region_recipes).to_not eq @region_recipes_initial
           expect(@course_recipes).to_not eq @course_recipes_initial
@@ -117,7 +117,7 @@ describe Allrecipes do
             expect(@ingredient_recipes.count).to eq 21
           end
 
-          its "default search should be popularity" do
+          it "should have default search sorted bsorted by popularity" do
             expect(@all_recipes).to eq @all_recipes_initial
             expect(@region_recipes).to eq @region_recipes_initial
             expect(@course_recipes).to eq @course_recipes_initial
