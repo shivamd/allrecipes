@@ -110,6 +110,44 @@ List of regions available:
 recipes.ingredient("apples") #default sorted by relevance, limit 21.
 ```
 
+**Passing options to search** 
+
+```#all, #region, #course, #ingredient``` all accept an options hash with the following paramters: limit, page & sort_by. 
+
+**Limit**
+
+Default & max limit is 20 for ```#all, #region & #course```. 
+Defaut & max limit is 21 for ```#ingredient```.
+
+```ruby
+recipes.all({ limit: 10 })
+recipes.ingredient("apples", { limit: 10 })
+```
+**Page**
+
+For pagination it's as simple as passing the page number. 
+If there are no results specified for that page, a blank array will be returned.
+```ruby
+recipes.all({ limit: 5, page: 3 }) #first 5 results from the 3rd page.
+recipes.course("dessert", { page: 2 }) #20 results from page 2.
+```
+
+**Sort_By**
+
+```#all, #region, #course``` are default sorted by popularity. Options available are popularity, date(newest first) and title(ascending).
+If mentioned outside of this scope, will resort to default(popularity). 
+```ruby
+recipes.all({ page: 5, sort_by: "date" })
+recipes.region("german", { sort_by: "title", limit: 10 })
+```
+
+```#ingredient``` search is default sorted by relevance. Options available are relevance, popularity and rating.
+If mentioned outside of this scope, will resort to default(relevance). 
+```ruby
+recipes.ingredient("apples", { sort_by: "rating", page: 3 })
+```
+
+
 **Sample response**
 ```ruby
 [
