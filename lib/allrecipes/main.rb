@@ -7,13 +7,13 @@ class Allrecipes
   end
 
   def all(options={})
-    page = @agent.get $URL + "/recipes" + "?page=#{options[:page]}&st=#{search_sort_parameter(options[:sort_by])}"
+    page = @agent.get $URL + "/recipes" + recipe_filters(options)
     PageParser.new(page, options).recipes
   end
 
   def course(course_type, options={})
     begin
-      course_url = get_course_url(course_type) + "?page=#{options[:page]}&st=#{search_sort_parameter(options[:sort_by])}"
+      course_url = recipes_url(course_type, options.merge({ url_type: "course" }))
       page = @agent.get(course_url)
       PageParser.new(page, options).recipes
     rescue Exception
@@ -23,7 +23,7 @@ class Allrecipes
 
   def region(region_type, options={})
     begin
-      region_url = get_region_url(region_type) + "?page=#{options[:page]}&st=#{search_sort_parameter(options[:sort_by])}"
+      region_url = recipes_url(region_type, options.merge({ url_type: "region" }))
       page = @agent.get(region_url)
       PageParser.new(page, options).recipes
     rescue Exception
@@ -41,7 +41,5 @@ class Allrecipes
       raise "Could not find recipes that include this ingredient"
     end
   end
-
-
 end
 
