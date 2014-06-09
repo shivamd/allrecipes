@@ -1,4 +1,4 @@
-# Allrecipes
+# The Allrecipes Ruby Gem
 [![Gem Version](https://badge.fury.io/rb/allrecipes.svg)](http://badge.fury.io/rb/allrecipes)
 [![Build Status](https://travis-ci.org/shivamd/allrecipes.svg?branch=master)](https://travis-ci.org/shivamd/allrecipes)
 [![Dependency Status](https://gemnasium.com/shivamd/allrecipes.svg)](https://gemnasium.com/shivamd/allrecipes)
