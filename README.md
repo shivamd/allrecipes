@@ -144,3 +144,5 @@ recipes.ingredient("apples") #default sorted by relevance, limit 21.
 5. Add rating to results
 6. Add user photos for recipe to results
 7. Able to get popular recipes of the day.
+8. Able to insert recipe URL directly. 
+9. Able to add page URL directly.
