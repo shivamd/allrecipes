@@ -202,7 +202,7 @@ describe Allrecipes do
           it "should be the same as default search" do
             recipe_names = @ingredient_recipes.map{ |ing| ing[:name] }.sort
             initial_recipe_names = @ingredient_recipes_initial.map{ |ing| ing[:name] }.sort
-            expect(recipe_names).to eq initial_recipe_names@ingredient_recipes_initial
+            expect(recipe_names).to eq initial_recipe_names
           end
         end
         context "Rating sort for ingredient search" do
