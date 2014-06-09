@@ -12,22 +12,20 @@ class Allrecipes
   end
 
   def course(course_type, options={})
-    begin
-      course_url = recipes_url(course_type, options.merge({ url_type: "course" }))
-      page = @agent.get(course_url)
-      PageParser.new(page, options).recipes
-    rescue Exception
-      raise "Course type doesn't exist"
-    end
+    recipe_search(course_type, options.merge({ url_type: "course" }))
   end
 
   def region(region_type, options={})
+    recipe_search(region_type, options.merge({ url_type: "region" }))
+  end
+
+  def recipe_search(type, options)
     begin
-      region_url = recipes_url(region_type, options.merge({ url_type: "region" }))
-      page = @agent.get(region_url)
+      url = recipes_url(type, options)
+      page = @agent.get(url)
       PageParser.new(page, options).recipes
     rescue Exception
-      raise "Region doesn't exist"
+      raise "#{options[:url_type].capitalize} doesn't exist"
     end
   end
 

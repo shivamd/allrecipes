@@ -41,7 +41,7 @@ describe Allrecipes do
     context "non existent course" do
       let(:nonexistent_course) { -> { subject.course("nonexistent") } }
       it "should give appropriate error message" do
-        expect(nonexistent_course).to raise_error("Course type doesn't exist")
+        expect(nonexistent_course).to raise_error("Course doesn't exist")
       end
     end
 
