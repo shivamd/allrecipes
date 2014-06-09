@@ -181,5 +181,6 @@ recipes.ingredient("apples", { sort_by: "rating", page: 3 })
 4. Add rating to results
 5. Add user photos for recipe to results
 6. Able to get popular recipes of the day.
-7. Able to insert recipe URL directly. 
-8. Able to add page URL directly.
+7. Able to request with recipe URL. 
+8. Able to request with page URL.
+9. Option for selecting what keys to return.
