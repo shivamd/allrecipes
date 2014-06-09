@@ -175,12 +175,11 @@ recipes.ingredient("apples", { sort_by: "rating", page: 3 })
 
 ## Todo
 
-1. Filters on search (offset, limit & sort_by)
-2. Complex search with queries such as multiple ingredients, course, time etc.
-3. Add prep time & cook time to results
-4. Add nutrional info to results.
-5. Add rating to results
-6. Add user photos for recipe to results
-7. Able to get popular recipes of the day.
-8. Able to insert recipe URL directly. 
-9. Able to add page URL directly.
+1. Complex search with queries such as multiple ingredients, course, time etc.
+2. Add prep time & cook time to results
+3. Add nutrional info to results.
+4. Add rating to results
+5. Add user photos for recipe to results
+6. Able to get popular recipes of the day.
+7. Able to insert recipe URL directly. 
+8. Able to add page URL directly.
