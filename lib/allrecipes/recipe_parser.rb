@@ -37,6 +37,15 @@ class RecipeParser
     "#lblYield"
   end
 
+  def rating
+    float_value = @page.search(rating_class).attr("content").inner_text.to_f
+    (float_value * 2).round / 2.0 #to convert to nearest 0.5
+  end
+
+  def rating_class
+    ".detail-right meta[itemprop='ratingValue']"
+  end
+
   def directions_class
     ".directions ol li span"
   end
@@ -96,7 +105,8 @@ class RecipeParser
       image: image,
       servings: servings,
       ingredients: @ingredients,
-      directions: @directions
+      directions: @directions,
+      rating: rating
     }
   end
 

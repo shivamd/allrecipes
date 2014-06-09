@@ -19,6 +19,10 @@ describe RecipeParser do
     expect(@recipe[:servings]).to eq 12
   end
 
+  it "should have the right rating" do
+    expect(@recipe[:rating]).to eq 5
+  end
+
   context "ingredients" do
 
     it "should have the right amount of ingredients" do
@@ -46,7 +50,8 @@ describe RecipeParser do
       image: @recipe[:image],
       servings: @recipe[:servings],
       ingredients: @recipe[:ingredients],
-      directions: @recipe[:directions]
+      directions: @recipe[:directions],
+      rating: @recipe[:rating]
     }
     expect(@recipe).to eq expected_output
   end
