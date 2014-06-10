@@ -1,4 +1,4 @@
-# The Allrecipes Ruby Gem
+# The <a href="http://allrecipes.com" target="_blank">Allrecipes</a> Ruby Gem
 [![Gem Version](https://badge.fury.io/rb/allrecipes.svg)](http://badge.fury.io/rb/allrecipes)
 [![Build Status](https://travis-ci.org/shivamd/allrecipes.svg?branch=master)](https://travis-ci.org/shivamd/allrecipes)
 [![Dependency Status](https://gemnasium.com/shivamd/allrecipes.svg)](https://gemnasium.com/shivamd/allrecipes)
@@ -199,4 +199,5 @@ recipes.page_url("http://allrecipes.com/recipes?Page=7")
 5. Add nutrional info to results.
 6. Add user photos for recipe to results
 7. Able to get popular recipes of the day. 
+
 
