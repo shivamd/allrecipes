@@ -152,7 +152,15 @@ If mentioned outside of this scope, will resort to default(relevance).
 ```ruby
 recipes.ingredient("apples", { sort_by: "rating", page: 3 })
 ```
+**Get recipe from url** 
+```ruby
+recipes.recipe_url("http://allrecipes.com/Recipe/Worlds-Best-Lasagna")
+```
 
+**Get recipes from a page which has a collection of recipes**
+```ruby
+recipes.page_url("http://allrecipes.com/recipes?Page=7")
+```
 
 **Sample response**
 ```ruby
@@ -175,18 +183,20 @@ recipes.ingredient("apples", { sort_by: "rating", page: 3 })
            "Bring a large pot of lightly salted water to a boil"
          }
        ]
+      :rating => 5.0,   #number between 0 and 5, rounded to the nearest .5
+      :prep_time => 90, #in minutes
+      :cook_time => 60  #in minutes
     }
 ]
 ```
 
 ## Todo
 
-1. Complex search with queries such as multiple ingredients, course, time etc.
-2. Add prep time & cook time to results
-3. Add nutrional info to results.
-4. Add rating to results
-5. Add user photos for recipe to results
-6. Able to get popular recipes of the day.
-7. Able to request with recipe URL. 
-8. Able to request with page URL.
-9. Option for selecting what keys to return.
+1. Option for selecting what keys to return.
+2. Complex search with queries such as multiple ingredients, course, time etc.
+3. Faster test suite
+4. Move ingredients parsing into its own class.
+5. Add nutrional info to results.
+6. Add user photos for recipe to results
+7. Able to get popular recipes of the day. 
+
