@@ -47,5 +47,14 @@ class Allrecipes
       raise "This page does not contain a recipe"
     end
   end
+
+  def page_url(url)
+    begin
+      page = @agent.get(url)
+      PageParser.new(page).recipes
+    rescue Exception
+      raise "This page does not contain recipes"
+    end
+  end
 end
 

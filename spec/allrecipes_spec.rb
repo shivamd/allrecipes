@@ -160,4 +160,33 @@ describe Allrecipes do
       end
     end
   end
+
+  describe "#page_url" do
+    context "correct url" do
+      before do
+        VCR.use_cassette "recipes_from_page" do
+          @recipes = subject.page_url("http://allrecipes.com/recipes?st=n&Page=7")
+        end
+      end
+
+      it "requests the correct URL" do
+        expect(a_request(:get, "http://allrecipes.com/recipes?st=n&Page=7")).to have_been_made
+      end
+
+      it "should have the right count of recipes" do
+        expect(@recipes.count).to eq 20
+      end
+    end
+    context "invalid url" do
+      let(:invalid_allrecipes_url) { -> { subject.page_url("http://allrecipes.com") } }
+      it "should give appropriate error message" do
+        expect(invalid_allrecipes_url).to raise_error("This page does not contain recipes")
+      end
+
+      let(:invalid_url) { -> { subject.page_url("invalid") } }
+      it "should give appropriate error message" do
+        expect(invalid_url).to raise_error("This page does not contain recipes")
+      end
+    end
+  end
 end
