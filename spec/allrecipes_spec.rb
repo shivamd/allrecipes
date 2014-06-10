@@ -124,7 +124,7 @@ describe Allrecipes do
   describe "#recipe_url" do
     context "correct url" do
       before do
-        VCR.use_cassette "recipe" do
+        VCR.use_cassette "recipe_url" do
           @recipe = subject.recipe_url("http://allrecipes.com/Recipe/Mushrooms-with-a-Soy-Sauce-Glaze")
         end
       end
