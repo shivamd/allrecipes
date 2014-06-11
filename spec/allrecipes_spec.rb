@@ -108,7 +108,7 @@ describe Allrecipes do
       end
 
       it "should include a recipe with specified ingredient" do
-        expect(@recipes.first[:ingredients].select{ |ingredient| ingredient["name"].include?("apples") }.count).to eq 1
+        expect(@recipes.first[:ingredients].select{ |ingredient| ingredient[:name].include?("apples") }.count).to eq 1
       end
 
     end
