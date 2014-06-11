@@ -159,6 +159,22 @@ describe Allrecipes do
         expect(invalid_url).to raise_error("This page does not contain a recipe")
       end
     end
+
+    context "with return keys" do
+      before do
+        VCR.use_cassette "recipe_url_with_keys" do
+          @recipe = subject.recipe_url("http://allrecipes.com/Recipe/Mushrooms-with-a-Soy-Sauce-Glaze", ["name", "servings"])
+        end
+      end
+      it "should return a formatted recipe" do
+        expected_output = {
+          name: @recipe[:name],
+          servings: @recipe[:servings],
+        }
+        expect(@recipe).to eq expected_output
+      end
+    end
+
   end
 
   describe "#page_url" do
@@ -186,6 +202,20 @@ describe Allrecipes do
       let(:invalid_url) { -> { subject.page_url("invalid") } }
       it "should give appropriate error message" do
         expect(invalid_url).to raise_error("This page does not contain recipes")
+      end
+    end
+    context "with return keys" do
+      before do
+        VCR.use_cassette "page_url_with_keys" do
+          @recipes = subject.page_url("http://allrecipes.com/recipes?st=n&Page=7", ["name", "image"])
+        end
+      end
+      it "should return a formatted recipe" do
+        expected_output = {
+          name: @recipes[0][:name],
+          image: @recipes[0][:image],
+        }
+        expect(@recipes[0]).to eq expected_output
       end
     end
   end

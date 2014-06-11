@@ -40,18 +40,18 @@ class Allrecipes
     end
   end
 
-  def recipe_url(url)
+  def recipe_url(url, keys=nil)
     begin
-      RecipeParser.new(url).recipe
+      RecipeParser.new(url, keys).recipe
     rescue Exception
       raise "This page does not contain a recipe"
     end
   end
 
-  def page_url(url)
+  def page_url(url, keys=nil)
     begin
       page = @agent.get(url)
-      PageParser.new(page).recipes
+      PageParser.new(page, { keys: keys }).recipes
     rescue Exception
       raise "This page does not contain recipes"
     end
