@@ -101,13 +101,20 @@ class RecipeParser
   end
 
   def default_keys
-    default = %w{name image servings ingredients directions rating prep_time cook_time}
-    @keys && @keys.count > 0 ? @keys : default
+    %w{name image servings ingredients directions rating prep_time cook_time}
+  end
+
+  def sanitized_keys
+    if @keys && @keys.count > 0
+      @keys.select{ |key| default_keys.include?(key) }
+    else
+      default_keys
+    end
   end
 
   def populate_recipe
     begin
-      default_keys.each{ |key| @recipe[key.to_sym] = send(key) }
+      sanitized_keys.each{ |key| @recipe[key.to_sym] = send(key) }
     rescue
       raise "Error getting recipe"
     end

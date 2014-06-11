@@ -74,6 +74,24 @@ describe RecipeParser do
       }
       expect(@recipe).to eq expected_output
     end
+  end
+  context "with invalid return options" do
+    before do
+      VCR.use_cassette "invalid_return" do
+        url = "http://allrecipes.com/Recipe/Worlds-Best-Lasagna/"
+        @recipe = RecipeParser.new(url, ["title", "doesn't exist", "servings"]).recipe
+      end
+    end
 
+    it "should have the return number of keys" do
+      expect(@recipe.keys.count).to eq 1
+    end
+
+    it "should return the correct format" do
+      expected_output = {
+        servings: @recipe[:servings]
+      }
+      expect(@recipe).to eq expected_output
+    end
   end
 end
