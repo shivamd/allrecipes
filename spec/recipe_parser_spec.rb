@@ -31,21 +31,8 @@ describe RecipeParser do
     expect(@recipe[:cook_time]).to eq 150
   end
 
-  context "ingredients" do
-
-    it "should have the right amount of ingredients" do
-      expect(@recipe[:ingredients].count).to eq 21
-    end
-    it "should have the right quantity" do
-      expect(@recipe[:ingredients].first["quantity"]).to eq 1
-    end
-    it "should have the right unit" do
-      expect(@recipe[:ingredients].first["unit"]).to eq "pound"
-    end
-    it "should have the right name" do
-      expect(@recipe[:ingredients].first["name"]).to eq "sweet Italian sausage"
-    end
-
+  it "should have the right amount of ingredients" do
+    expect(@recipe[:ingredients].count).to eq 21
   end
 
   it "should have the right amount of directions" do
