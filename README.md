@@ -172,9 +172,9 @@ recipes.page_url("http://allrecipes.com/recipes?Page=7")
       :ingredients =>
         [
           {
-            "quantity" => 1.0,
-            "unit" => "pound", 
-            "name" => "ground beef"
+            :quantity => 1.0,
+            :unit     => "pound", 
+            :name     => "ground beef"
           }
         ],
      :directions => 
@@ -195,9 +195,8 @@ recipes.page_url("http://allrecipes.com/recipes?Page=7")
 1. Option for selecting what keys to return.
 2. Complex search with queries such as multiple ingredients, course, time etc.
 3. Faster test suite
-4. Move ingredients parsing into its own class.
-5. Add nutrional info to results.
-6. Add user photos for recipe to results
-7. Able to get popular recipes of the day. 
+4. Add nutrional info to results.
+5. Add user photos for recipe to results
+6. Able to get popular recipes of the day. 
 
 
