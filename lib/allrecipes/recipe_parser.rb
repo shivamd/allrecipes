@@ -1,10 +1,13 @@
 class RecipeParser
+  attr_accessor :directions, :recipe
 
-  def initialize(page)
+  def initialize(page, keys=nil)
     @page = request_page(page)
+    @keys = keys
     @directions = []
-    get_ingredients
+    @recipe = {}
     get_directions
+    populate_recipe
   end
 
   def agent
@@ -71,11 +74,11 @@ class RecipeParser
     @page.search("##{type}HoursSpan em")
   end
 
-  def preparation_time
+  def prep_time
     time("prep")
   end
 
-  def cooking_time
+  def cook_time
     time("cook")
   end
 
@@ -93,22 +96,18 @@ class RecipeParser
     end
   end
 
-  def get_ingredients
-    @ingredients = IngredientsParser.new(@page).ingredients
+  def ingredients
+    @ingredients ||= IngredientsParser.new(@page).ingredients
   end
 
-  def recipe
+  def default_keys
+    default = %w{name image servings ingredients directions rating prep_time cook_time}
+    @keys && @keys.count > 0 ? @keys : default
+  end
+
+  def populate_recipe
     begin
-      {
-        name: name,
-        image: image,
-        servings: servings,
-        ingredients: @ingredients,
-        directions: @directions,
-        rating: rating,
-        prep_time: preparation_time,
-        cook_time: cooking_time
-      }
+      default_keys.each{ |key| @recipe[key.to_sym] = send(key) }
     rescue
       raise "Error getting recipe"
     end
