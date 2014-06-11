@@ -43,7 +43,7 @@ class PageParser
   def get_recipes
     filtered_recipes.each do |info|
       recipe_link = recipe_link(info)
-      @recipes <<  RecipeParser.new(recipe_link).recipe
+      @recipes <<  RecipeParser.new(recipe_link, @options[:keys]).recipe
     end
   end
 
