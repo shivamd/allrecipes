@@ -118,7 +118,7 @@ recipes.ingredient("apples") #default sorted by relevance, limit 21.
 
 **Passing options to search** 
 
-```#all, #region, #course, #ingredient``` all accept an options hash with the following paramters: limit, page & sort_by. 
+```#all, #region, #course, #ingredient``` all accept an options hash with the following paramters: limit, page, sort_by & keys.
 
 **Limit**
 
@@ -147,19 +147,33 @@ recipes.all({ page: 5, sort_by: "date" })
 recipes.region("german", { sort_by: "title", limit: 10 })
 ```
 
+**Keys**
+
+The default return keys are displayed in the sample response, however you can tweak them for your preference.
+```ruby
+recipes.all({ keys: ["name", "image"] }) #the response will include only name & image.
+```
+
 ```#ingredient``` search is default sorted by relevance. Options available are relevance, popularity and rating.
 If mentioned outside of this scope, will resort to default(relevance). 
 ```ruby
-recipes.ingredient("apples", { sort_by: "rating", page: 3 })
+recipes.ingredient("apples", { sort_by: "rating", page: 3, keys: ["name"] })
 ```
 **Get recipe from url** 
 ```ruby
 recipes.recipe_url("http://allrecipes.com/Recipe/Worlds-Best-Lasagna")
 ```
-
+This method takes an optional 2nd argument, an array of return keys.
+```ruby
+recipes.recipe_url("http://allrecipes.com/Recipe/Worlds-Best-Lasagna", ["prep_time", "servings"])
+```
 **Get recipes from a page which has a collection of recipes**
 ```ruby
 recipes.page_url("http://allrecipes.com/recipes?Page=7")
+```
+This method takes an optional 2nd argument, an array of return keys.
+```ruby
+recipes.page_url("http://allrecipes.com/recipes?Page=7", ["ingredients", "directions"])
 ```
 
 **Sample response**
@@ -192,11 +206,8 @@ recipes.page_url("http://allrecipes.com/recipes?Page=7")
 
 ## Todo
 
-1. Option for selecting what keys to return.
-2. Complex search with queries such as multiple ingredients, course, time etc.
-3. Faster test suite
-4. Add nutrional info to results.
-5. Add user photos for recipe to results
-6. Able to get popular recipes of the day. 
-
-
+1. Complex search with queries such as multiple ingredients, course, time etc.
+2. Faster test suite
+3. Add nutrional info to results.
+4. Add user photos for recipe to results
+5. Ability to get popular recipes of the day. 
