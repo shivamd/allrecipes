@@ -23,7 +23,9 @@ class IngredientsParser
 
   def add_ingredient_to_list(amount, ingredient_name)
     if amount && ingredient_name #some recipes have empty ingredients
-      quantity,unit = amount.text.split(" ")
+      _details = amount.text.split(" ")
+      quantity = eval "#{_details[0]}.0"
+      unit = _details.last
       @ingredients << { quantity: quantity.to_f, unit: unit, name: ingredient_name.text }
     end
   end
