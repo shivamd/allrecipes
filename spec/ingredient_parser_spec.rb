@@ -16,8 +16,16 @@ describe IngredientsParser do
     expect(@ing_parser.ingredients.first[:quantity]).to eq 1
   end
 
+  it "should have the correct quantity even if there is additional info" do
+    expect(@ing_parser.ingredients[5][:quantity]).to eq 2
+  end
+
   it "should have the correct unit" do
     expect(@ing_parser.ingredients.first[:unit]).to eq "pound"
+  end
+
+  it "should have the correct unit even if there is additional info" do
+    expect(@ing_parser.ingredients[5][:unit]).to eq "cans"
   end
 
   it "should have the correct ingredient name" do
